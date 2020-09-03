@@ -12,12 +12,16 @@ import java.util.List;
 public class CreateAutoWindow extends Window {
 
     public CreateAutoWindow(AutoDTO auto, Grid<AutoDTO> grid, VertrieblerDTO vertrieblerDTO) {
-        super("Ihre Auto");
+        super("Ihr Auto");
         center();
 
         //Marke
         TextField marke = new TextField("Marke");
         marke.setValue(auto.getMarke());
+
+        //Modell
+        TextField modell = new TextField("Modell");
+        modell.setValue(auto.getModell());
 
         //Baujahr
         TextField baujahr = new TextField("Baujahr");
@@ -32,7 +36,8 @@ public class CreateAutoWindow extends Window {
         saveButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                auto.setMarke(marke.getValue());
+                auto.setMarke(marke.getValue().toUpperCase());
+                auto.setModell(modell.getValue().toUpperCase());
                 auto.setBaujahr(baujahr.getValue());
                 auto.setBeschreibung(beschreibung.getValue());
 

@@ -1,12 +1,21 @@
 package org.se2.model.objects.dto;
 
 public class AutoDTO extends AbstractDTO {
+    private int id;
     private String marke;
     private String modell;
-    private String beschreibung;
     private String baujahr;
+    private String beschreibung;
 
     public AutoDTO() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMarke() {

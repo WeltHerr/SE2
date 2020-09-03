@@ -1,5 +1,6 @@
 package org.se2.process.control;
 
+import org.se2.model.dao.AutoDAO;
 import org.se2.model.objects.dto.AutoDTO;
 import org.se2.model.objects.dto.KundeDTO;
 import org.se2.model.objects.dto.VertrieblerDTO;
@@ -30,7 +31,7 @@ public class AutoControl {
     }
 
     public List<AutoDTO> getAutosForSearch(String suchtext, String filter) throws SQLException {
-        return null;
+        return AutoDAO.getInstance().getAutosForSearch(suchtext, filter);
     }
 
     public void deleteAuto(AutoDTO autoDTO) throws AutoException {

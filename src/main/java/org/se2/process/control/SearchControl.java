@@ -36,7 +36,7 @@ public class SearchControl {
 
     public List<AutoDTO> getAutosForSearch(String suchtext, String filter) throws SQLException {
         if (filter == null) {
-            filter = "name";
+            filter = "marke";
         }
         return AutoControl.getInstance().getAutosForSearch(suchtext, filter);
     }

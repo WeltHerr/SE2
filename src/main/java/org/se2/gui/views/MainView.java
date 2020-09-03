@@ -32,7 +32,6 @@ public class MainView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        //User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
         UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
         if (userDTO == null) {
             UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
@@ -107,7 +106,7 @@ public class MainView extends VerticalLayout implements View {
         searchButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                suchtext = search.getValue();
+                suchtext = search.getValue().toUpperCase();
                 if(suchtext.equals("")) {
                     try {
                         list = SearchControl.getInstance().getAutosForSearch(suchtext, comboBox.getValue());
@@ -139,7 +138,7 @@ public class MainView extends VerticalLayout implements View {
 
     private void search(TextField search, ComboBox<String> comboBox, Grid<AutoDTO> grid, Button detailButton) {
         if (search.getValue().length() > 1) {
-            suchtext = search.getValue();
+            suchtext = search.getValue().toUpperCase();
             String filter = comboBox.getValue();
             try {
                 list = SearchControl.getInstance().getAutosForSearch(suchtext, filter);

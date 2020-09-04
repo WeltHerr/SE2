@@ -76,6 +76,7 @@ public class CreateAutoWindow extends Window {
         //Vertikal
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.addComponent(marke);
+        verticalLayout.addComponent(modell);
         verticalLayout.addComponent(baujahr);
         verticalLayout.addComponent(beschreibung);
         verticalLayout.addComponent(horizontalLayout);

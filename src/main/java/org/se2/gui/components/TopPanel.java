@@ -42,7 +42,7 @@ public class  TopPanel extends HorizontalLayout {
 
             //Vertriebler Menü
             if ( userDTO.hasRole(Roles.VERTRIEBLER) ) {
-                item1.addItem("Meine Autos", VaadinIcons.FILE_TEXT_O, new MenuBar.Command() {
+                item1.addItem("Meine Inserate", VaadinIcons.FILE_TEXT_O, new MenuBar.Command() {
                     @Override
                     public void menuSelected(MenuBar.MenuItem menuItem) {
                         UI.getCurrent().getNavigator().navigateTo(Views.AUTO);

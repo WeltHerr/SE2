@@ -12,15 +12,16 @@ import org.se2.services.util.Views;
 public class DeleteAutoWindow extends DeleteWindow{
     //Window zum Löschen von Autos
 
-    public DeleteAutoWindow(AutoDTO AutoDTO) {
+    public DeleteAutoWindow(AutoDTO autoDTO) {
         this.setText("Sind Sie sicher, dass Sie die Auto löschen wollen? <br>" +
                 "Dieser Vorgang ist unumkehrbar!");
-        this.setDto(AutoDTO);
+        this.setDto(autoDTO);
         this.setListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 try {
-                    AutoControl.getInstance().deleteAuto(AutoDTO);
+                    System.out.println(autoDTO.getId());
+                    AutoControl.getInstance().deleteAuto(autoDTO);
                 } catch (AutoException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }

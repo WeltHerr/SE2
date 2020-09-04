@@ -13,10 +13,13 @@ import com.vaadin.ui.*;
 import org.se2.gui.components.TopPanel;
 import org.se2.gui.ui.MyUI;
 import org.se2.gui.windows.AutoWindow;
+import org.se2.gui.windows.CreateAutoWindow;
 import org.se2.model.objects.dto.AutoDTO;
 import org.se2.model.objects.dto.UserDTO;
+import org.se2.model.objects.dto.VertrieblerDTO;
 import org.se2.process.control.SearchControl;
 import org.se2.services.util.BuildGrid;
+import org.se2.services.util.Roles;
 import org.se2.services.util.Views;
 
 import java.sql.SQLException;
@@ -37,11 +40,10 @@ public class MainView extends VerticalLayout implements View {
             UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
         }
 
-        this.setUp();
+        this.setUp(userDTO);
     }
 
-    private void setUp() {
-        UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
+    private void setUp(UserDTO userDTO) {
         //Top Layer
         this.addComponent( new TopPanel() );
         Label line = new Label("<hr>", ContentMode.HTML);
@@ -54,6 +56,8 @@ public class MainView extends VerticalLayout implements View {
         grid.setHeightMode(HeightMode.UNDEFINED);
         BuildGrid.buildGrid(grid);
         SingleSelect<AutoDTO> selection = grid.asSingleSelect();
+
+
 
         //DetailButton
         Button detailButton = new Button("Details", VaadinIcons.ENTER);
@@ -123,6 +127,8 @@ public class MainView extends VerticalLayout implements View {
             }
         });
 
+
+
         //Horizontal Layout
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.addComponent(comboBox);
@@ -130,6 +136,30 @@ public class MainView extends VerticalLayout implements View {
         horizontalLayout.addComponent(searchButton);
         horizontalLayout.setComponentAlignment(search, Alignment.MIDDLE_CENTER);
         horizontalLayout.setComponentAlignment(searchButton, Alignment.MIDDLE_CENTER);
+        //Vertriebler Menü
+        if ( userDTO.hasRole(Roles.VERTRIEBLER) ) {
+
+            VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
+
+            //InserierenButton
+            Button inserierenButton = new Button("Auto inserieren");
+            inserierenButton.setEnabled(true);
+
+            //ShowButton Config Stellenanzeige Bearbeiten
+            inserierenButton.addClickListener(new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent clickEvent) {
+                    if(userDTO.hasRole(Roles.VERTRIEBLER)){
+                        VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(((MyUI) UI.getCurrent()).getUserDTO());
+                    }
+                    CreateAutoWindow window = new CreateAutoWindow(new AutoDTO(), grid, vertrieblerDTO);
+                    UI.getCurrent().addWindow(window);
+                }
+            });
+
+            horizontalLayout.addComponent(inserierenButton);
+
+        }
 
         //Darstellen
         this.addComponent(horizontalLayout);

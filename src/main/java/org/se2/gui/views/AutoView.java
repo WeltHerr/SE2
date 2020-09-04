@@ -62,7 +62,7 @@ public class AutoView extends VerticalLayout implements View {
         showButton.setEnabled(false);
 
         //CreateButton
-        Button createButton = new Button("Erstellen");
+        Button createButton = new Button("Neues Auto inserieren");
 
         //DeleteButton
         Button deleteButton = new Button("Löschen");

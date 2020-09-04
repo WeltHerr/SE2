@@ -62,7 +62,7 @@ public class AutoWindow extends Window {
 
         //Vertikal
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout = this.buildVerticalLayout(verticalLayout, marke, baujahr, beschreibung, horizontalLayout);
+        verticalLayout = this.buildVerticalLayout(verticalLayout, marke,modell, baujahr, beschreibung, horizontalLayout);
         setContent(verticalLayout);
     }
 
@@ -92,7 +92,7 @@ public class AutoWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 Auto.setMarke(marke.getValue());
-                Auto.setModell(marke.getValue());
+                Auto.setModell(modell.getValue());
                 Auto.setBaujahr(baujahr.getValue());
                 Auto.setBeschreibung(beschreibung.getValue());
 
@@ -130,10 +130,13 @@ public class AutoWindow extends Window {
 
         //Vertikal
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout = this.buildVerticalLayout(verticalLayout, marke, baujahr, beschreibung, horizontalLayout);
+        verticalLayout = this.buildVerticalLayout(verticalLayout, marke,modell, baujahr, beschreibung, horizontalLayout);
         setContent(verticalLayout);
     }
-    public VerticalLayout buildVerticalLayout(VerticalLayout verticalLayout, TextField marke, TextField baujahr, TextArea beschreibung, HorizontalLayout horizontalLayout ){
+    public VerticalLayout buildVerticalLayout(VerticalLayout verticalLayout, TextField marke,TextField modell, TextField baujahr, TextArea beschreibung, HorizontalLayout horizontalLayout ){
+        verticalLayout.addComponent(marke);
+        verticalLayout.addComponent(modell);
+        verticalLayout.addComponent(baujahr);
         verticalLayout.addComponent(beschreibung);
         verticalLayout.addComponent(horizontalLayout);
         verticalLayout.setComponentAlignment(horizontalLayout, Alignment.MIDDLE_CENTER);

@@ -2,10 +2,11 @@ package org.se2.model.objects.dto;
 
 public class AutoDTO extends AbstractDTO {
     private int id;
-    private String marke;
-    private String modell;
-    private String baujahr;
-    private String beschreibung;
+    private String marke = "";
+    private String modell ="";
+    private String baujahr ="";
+    private String beschreibung ="";
+    private int id_vertriebler;
 
     public AutoDTO() {
     }
@@ -48,5 +49,13 @@ public class AutoDTO extends AbstractDTO {
 
     public void setBaujahr(String baujahr) {
         this.baujahr = baujahr;
+    }
+
+    public int getId_vertriebler() {
+        return id_vertriebler;
+    }
+
+    public void setId_vertriebler(int id_vertriebler) {
+        this.id_vertriebler = id_vertriebler;
     }
 }

@@ -1,12 +1,14 @@
 package org.se2.gui.windows;
 
 import com.vaadin.ui.*;
+import org.se2.model.dao.ReservierungDAO;
 import org.se2.model.objects.dto.AutoDTO;
 import org.se2.model.objects.dto.UserDTO;
 import org.se2.model.objects.dto.VertrieblerDTO;
 import org.se2.process.control.AutoControl;
 import org.se2.process.control.ReservierungControl;
 import org.se2.process.exceptions.AutoException;
+import org.se2.process.exceptions.ReservierungException;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -25,6 +27,11 @@ public class AutoWindow extends Window {
         marke = new TextField("Marke");
         marke.setValue(auto.getMarke());
         marke.setReadOnly(true);
+
+        //Modell
+        modell = new TextField("Modell");
+        modell.setValue(auto.getModell());
+        modell.setReadOnly(true);
 
         //Baujahr
         baujahr = new TextField("Baujahr");
@@ -51,6 +58,15 @@ public class AutoWindow extends Window {
         bewerbenButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
+                try {
+                    ReservierungDAO.getInstance().createReservierung(auto, userDTO);
+
+                } catch (Exception e){ //HIER EXCEPTION HANDLIN VERBESSERN !!!!!!!!!!!
+
+                    Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+
+                }
+                UI.getCurrent().addWindow(new ConfirmationWindow("Ihre Reservierung war erfolgreich!"));
                 close();
             }
         });

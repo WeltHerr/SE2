@@ -8,6 +8,7 @@ import org.se2.model.objects.dto.KundeDTO;
 import org.se2.model.objects.dto.UserDTO;
 import org.se2.model.objects.dto.VertrieblerDTO;
 import org.se2.process.exceptions.AutoException;
+import org.se2.process.exceptions.ReservierungException;
 
 import java.sql.SQLException;
 import java.util.List;

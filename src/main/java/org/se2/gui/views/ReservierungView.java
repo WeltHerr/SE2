@@ -49,7 +49,7 @@ public class ReservierungView extends VerticalLayout implements View {
         SingleSelect<AutoDTO> selection = grid.asSingleSelect();
         //Tabelle füllen
         try {
-            list = AutoControl.getInstance().getAnzeigenForKunde(kundeDTO);
+            list = ReservierungControl.getInstance().getReservierungenForKunde(kundeDTO);
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }

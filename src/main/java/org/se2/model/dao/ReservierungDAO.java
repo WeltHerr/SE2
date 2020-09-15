@@ -37,6 +37,18 @@ public class ReservierungDAO extends AbstractDAO{
         }
     }
 
+    //Löscht ein Auto aus der Datenbank
+    public void deleteReservierung(AutoDTO autoDTO, KundeDTO kundeDTO) throws SQLException {
+        String sql = "DELETE " +
+                "FROM carlookltd.user_reserve_car " +
+                "WHERE user_reserve_car.user_id = ? AND user_reserve_car.car_id = ?; ";
+        PreparedStatement statement = this.getPreparedStatement(sql);
+            statement.setInt(1, kundeDTO.getId());
+            statement.setInt(2,autoDTO.getId());
+            statement.executeUpdate();
+
+    }
+
     //Gibt alle reservierten Autos eines Kunden zurück
     public List<AutoDTO> getReservierungenForKunde(KundeDTO kundeDTO) throws SQLException {
         String sql = "SELECT carlookltd.car.id, carlookltd.car.marke, carlookltd.car.modell, carlookltd.car.baujahr, carlookltd.car.beschreibung " +

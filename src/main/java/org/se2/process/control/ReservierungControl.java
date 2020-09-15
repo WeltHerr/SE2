@@ -30,7 +30,8 @@ public class ReservierungControl {
         return null;
     }
 
-    public void deleteReservierung(ReservierungDTO reservierungDTO) throws ReservierungException {
+    public void deleteReservierung(AutoDTO autoDTO, KundeDTO kundeDTO) throws ReservierungException, SQLException {
+        ReservierungDAO.getInstance().deleteReservierung(autoDTO, kundeDTO);
     }
 
     public void checkAllowed(AutoDTO auto, UserDTO userDTO, Button bewerbenButton) {

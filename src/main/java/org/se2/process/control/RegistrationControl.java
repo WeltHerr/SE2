@@ -101,8 +101,4 @@ public class RegistrationControl {
 
     }
 
-    //User Löschen
-    public void deleteUser(UserDTO userDTO){
-        RegisterDAO.getInstance().deleteUser(userDTO);
-    }
 }

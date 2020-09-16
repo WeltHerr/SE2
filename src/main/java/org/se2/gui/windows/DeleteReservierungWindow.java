@@ -6,7 +6,6 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.se2.model.objects.dto.AutoDTO;
 import org.se2.model.objects.dto.KundeDTO;
-import org.se2.model.objects.dto.ReservierungDTO;
 import org.se2.process.control.ReservierungControl;
 import org.se2.process.exceptions.ReservierungException;
 import org.se2.services.util.Views;

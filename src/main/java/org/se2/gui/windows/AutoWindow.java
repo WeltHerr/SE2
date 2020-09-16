@@ -8,7 +8,6 @@ import org.se2.model.objects.dto.VertrieblerDTO;
 import org.se2.process.control.AutoControl;
 import org.se2.process.control.ReservierungControl;
 import org.se2.process.exceptions.AutoException;
-import org.se2.process.exceptions.ReservierungException;
 import org.se2.services.util.Roles;
 
 import java.sql.SQLException;

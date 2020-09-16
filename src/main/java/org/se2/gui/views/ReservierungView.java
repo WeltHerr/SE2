@@ -13,10 +13,7 @@ import org.se2.gui.windows.DeleteReservierungWindow;
 import org.se2.gui.windows.DeleteWindow;
 import org.se2.model.objects.dto.AutoDTO;
 import org.se2.model.objects.dto.KundeDTO;
-import org.se2.model.objects.dto.ReservierungDTO;
-import org.se2.process.control.AutoControl;
 import org.se2.process.control.ReservierungControl;
-import org.se2.process.exceptions.DatabaseException;
 import org.se2.services.util.BuildGrid;
 
 import java.sql.SQLException;
@@ -78,13 +75,6 @@ public class ReservierungView extends VerticalLayout implements View {
         deleteButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                try {
-                   ReservierungControl.getInstance().getReservierungForAuto(selektiert, kundeDTO);
-                } catch (SQLException e) {
-                    Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
-                } catch (DatabaseException e) {
-                    Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
-                }
                 DeleteReservierungWindow deleteReservierungWindow = new DeleteReservierungWindow(selektiert, kundeDTO);
                 UI.getCurrent().addWindow( new DeleteWindow(deleteReservierungWindow) );
             }

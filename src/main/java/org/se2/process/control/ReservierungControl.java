@@ -26,9 +26,6 @@ public class ReservierungControl {
         return reservierungControl;
     }
 
-    public ReservierungDTO getReservierungForAuto(AutoDTO selektiert, KundeDTO kundeDTO) throws SQLException, DatabaseException {
-        return null;
-    }
 
     public void deleteReservierung(AutoDTO autoDTO, KundeDTO kundeDTO) throws ReservierungException, SQLException {
         ReservierungDAO.getInstance().deleteReservierung(autoDTO, kundeDTO);

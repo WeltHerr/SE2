@@ -110,8 +110,8 @@ public class AutoWindow extends Window {
         saveButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                Auto.setMarke(marke.getValue());
-                Auto.setModell(modell.getValue());
+                Auto.setMarke(marke.getValue().toUpperCase());
+                Auto.setModell(modell.getValue().toUpperCase());
                 Auto.setBaujahr(baujahr.getValue());
                 Auto.setBeschreibung(beschreibung.getValue());
 

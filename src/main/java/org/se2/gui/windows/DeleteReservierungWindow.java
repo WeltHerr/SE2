@@ -7,7 +7,6 @@ import com.vaadin.ui.Window;
 import org.se2.model.objects.dto.AutoDTO;
 import org.se2.model.objects.dto.KundeDTO;
 import org.se2.process.control.ReservierungControl;
-import org.se2.process.exceptions.ReservierungException;
 import org.se2.services.util.Views;
 
 import java.sql.SQLException;
@@ -22,8 +21,6 @@ public class DeleteReservierungWindow extends DeleteWindow {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 try {
                     ReservierungControl.getInstance().deleteReservierung(autoDTO, kundeDTO);
-                } catch (ReservierungException e ) {
-                    Notification.show("DB-Fehler", "Löschen war nicht erfolgreich!", Notification.Type.ERROR_MESSAGE);
                 } catch (SQLException e2){
                     Notification.show("DB-Fehler", "Löschen war nicht erfolgreich!", Notification.Type.ERROR_MESSAGE);
                 }

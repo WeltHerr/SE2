@@ -51,10 +51,6 @@ public class DeleteWindow extends Window {
         this.text = text;
     }
 
-    public AbstractDTO getDto() {
-        return dto;
-    }
-
     public void setDto(AbstractDTO dto) {
         this.dto = dto;
     }

@@ -4,7 +4,6 @@ import com.vaadin.ui.UI;
 import org.se2.gui.ui.MyUI;
 import org.se2.model.dao.AutoDAO;
 import org.se2.model.objects.dto.AutoDTO;
-import org.se2.model.objects.dto.KundeDTO;
 import org.se2.model.objects.dto.UserDTO;
 import org.se2.model.objects.dto.VertrieblerDTO;
 import org.se2.process.exceptions.AutoException;
@@ -23,10 +22,6 @@ public class AutoControl {
             autoControl = new AutoControl();
         }
         return autoControl;
-    }
-
-    public List<AutoDTO> getAnzeigenForKunde(KundeDTO kundeDTO) throws SQLException {
-        return null;
     }
 
     public List<AutoDTO> getAnzeigenForVertriebler(VertrieblerDTO vertrieblerDTO) throws SQLException {

@@ -28,7 +28,6 @@ public class SearchControl {
         UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
         if (userDTO.hasRole(Roles.KUNDE)) {
             KundeDTO kundeDTO = new KundeDTO(userDTO);
-            return AutoControl.getInstance().getAnzeigenForKunde(kundeDTO);
         }
         VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
         return AutoControl.getInstance().getAnzeigenForVertriebler(vertrieblerDTO);

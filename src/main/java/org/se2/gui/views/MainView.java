@@ -149,9 +149,6 @@ public class MainView extends VerticalLayout implements View {
             inserierenButton.addClickListener(new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent clickEvent) {
-                    if(userDTO.hasRole(Roles.VERTRIEBLER)){
-                        VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(((MyUI) UI.getCurrent()).getUserDTO());
-                    }
                     CreateAutoWindow window = new CreateAutoWindow(new AutoDTO(), grid, vertrieblerDTO);
                     UI.getCurrent().addWindow(window);
                 }

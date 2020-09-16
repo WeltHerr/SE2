@@ -103,7 +103,7 @@ public class ReservierungDAO extends AbstractDAO{
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         ResultSet rs = null;
         for (AutoDTO autoDTO1 : list) {
-            int id_car = autoDTO1.getId();
+            int id_car = autoDTO.getId();
             try {
                 statement.setInt(1, userDTO.getId());
                 statement.setInt(2, id_car);
@@ -122,6 +122,7 @@ public class ReservierungDAO extends AbstractDAO{
     }
     public void checkAllowed(AutoDTO autoDTO, UserDTO userDTO, Button reservierenButton) {
         try {
+            reservierenButton.setVisible(true);
             checkAlreadyApplied(autoDTO, userDTO);
         } catch (DatabaseException e) {
             Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);

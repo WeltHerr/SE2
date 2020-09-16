@@ -38,11 +38,15 @@ public class LoginView extends VerticalLayout implements View {
         binder.forField(userLogin)
                 .withValidator(new EmailValidator("Bitte geben Sie eine korrekte Emailadresse ein!"))
                 .bind(UserDTO::getEmail, UserDTO::setEmail);
+        userLogin.setId("emailField");
+
         final PasswordField passwordField = new PasswordField("Passwort:");
         passwordField.setPlaceholder("Passwort");
+        passwordField.setId("passwortField");
 
         //Login Button
         Button loginButton = new Button("Login");
+        loginButton.setId("loginButton");
         loginButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         loginButton.addClickListener(new Button.ClickListener() {
             @Override

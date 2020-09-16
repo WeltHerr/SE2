@@ -42,7 +42,6 @@ public class RegistrationView extends VerticalLayout implements View {
                 .withValidator(str -> Pattern.matches("[a-zA-Z]+",str), "Bitte geben Sie einen gülgigen Namen ein!")
                 .asRequired("Bitte geben Sie einen gültigen Namen ein!")
                 .bind(UserDTO::getName, UserDTO::setName);
-        fieldName.setId("name");
 
         //Email
         final Binder<UserDTO> emailBinder = new Binder<>();
@@ -52,7 +51,6 @@ public class RegistrationView extends VerticalLayout implements View {
         emailBinder.forField(fieldEmail)
                 .withValidator(new EmailValidator("Biite geben Sie eine korrekte Emailadresse ein!"))
                 .bind(UserDTO::getEmail, UserDTO::setEmail);
-        fieldEmail.setId("email");
 
         //Passwort setzen und Counter Label darunter
         final Binder<UserDTO> password1Binder = new Binder<>();
@@ -75,7 +73,6 @@ public class RegistrationView extends VerticalLayout implements View {
             }
         });
         fieldPassword1.setValueChangeMode(ValueChangeMode.EAGER);
-        fieldPassword1.setId("passwort1");
 
         //Passwort wiederholen
         final Binder<UserDTO> password2Binder = new Binder<>();
@@ -96,7 +93,6 @@ public class RegistrationView extends VerticalLayout implements View {
             }
         });
         fieldPassword1.setValueChangeMode(ValueChangeMode.EAGER);
-        fieldPassword2.setId("passwort2");
 
         //Checkbox
         final Binder<UserDTO> checkboxBinder = new Binder<>();

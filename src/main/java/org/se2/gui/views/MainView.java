@@ -145,7 +145,7 @@ public class MainView extends VerticalLayout implements View {
             Button inserierenButton = new Button("Auto inserieren");
             inserierenButton.setEnabled(true);
 
-            //ShowButton Config Stellenanzeige Bearbeiten
+            //ShowButton Config Bearbeiten
             inserierenButton.addClickListener(new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent clickEvent) {

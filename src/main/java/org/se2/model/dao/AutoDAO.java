@@ -76,7 +76,7 @@ public class AutoDAO extends AbstractDAO {
         }
     }
 
-    //Erstellt eine neue Stellenanzeige in der Datenbank
+    //Erstellt ein neues Auto in der Datenbank
     public boolean createAuto(AutoDTO autoDTO, UserDTO userDTO) {
         String sql = "INSERT INTO carlookltd.car(id, marke, modell, baujahr, beschreibung)" +
                 "VALUES (default, ?, ?, ?, ?)";

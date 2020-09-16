@@ -34,7 +34,8 @@ public class ReservierungControl {
         ReservierungDAO.getInstance().deleteReservierung(autoDTO, kundeDTO);
     }
 
-    public void checkAllowed(AutoDTO auto, UserDTO userDTO, Button bewerbenButton) {
+    public void checkAllowed(AutoDTO auto, UserDTO userDTO, Button reservierenButton) {
+        ReservierungDAO.getInstance().checkAllowed(auto,userDTO,reservierenButton);
     }
 
     public void reserveCar(AutoDTO auto, UserDTO userDTO) throws ReservierungException, SQLException {

@@ -1,9 +1,13 @@
 package org.se2.model.dao;
 
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import org.se2.model.objects.dto.AutoDTO;
 import org.se2.model.objects.dto.KundeDTO;
 import org.se2.model.objects.dto.UserDTO;
+import org.se2.process.exceptions.DatabaseException;
+import org.se2.process.exceptions.ReservierungException;
+import org.se2.services.db.JDBCConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,4 +93,42 @@ public class ReservierungDAO extends AbstractDAO{
         }
     }
 
+    public void checkAlreadyApplied(AutoDTO autoDTO, UserDTO userDTO) throws SQLException, ReservierungException, DatabaseException {
+        KundeDTO kundeDTO = new KundeDTO(userDTO);
+        List<AutoDTO> list = ReservierungDAO.getInstance().getReservierungenForKunde(kundeDTO);
+        String sql = "SELECT car_id " +
+                "FROM carlookltd.user_reserve_car " +
+                "WHERE user_id = ? " +
+                "AND car_id = ?";
+        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+        ResultSet rs = null;
+        for (AutoDTO autoDTO1 : list) {
+            int id_car = autoDTO1.getId();
+            try {
+                statement.setInt(1, userDTO.getId());
+                statement.setInt(2, id_car);
+                rs = statement.executeQuery();
+                if (rs.next()) {
+                    throw new ReservierungException();
+                }
+            } catch (SQLException e) {
+                Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
+            } finally {
+                assert rs != null;
+                rs.close();
+            }
+        }
+
+    }
+    public void checkAllowed(AutoDTO autoDTO, UserDTO userDTO, Button reservierenButton) {
+        try {
+            checkAlreadyApplied(autoDTO, userDTO);
+        } catch (DatabaseException e) {
+            Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
+        } catch (ReservierungException e) {
+            reservierenButton.setVisible(false);
+        } catch (SQLException e) {
+            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
+        }
+    }
 }

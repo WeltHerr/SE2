@@ -9,6 +9,7 @@ import org.se2.process.control.AutoControl;
 import org.se2.process.control.ReservierungControl;
 import org.se2.process.exceptions.AutoException;
 import org.se2.process.exceptions.ReservierungException;
+import org.se2.services.util.Roles;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -52,16 +53,16 @@ public class AutoWindow extends Window {
             }
         });
 
-        //BewerbenButton
-        Button bewerbenButton = new Button("Reservieren");
-        ReservierungControl.getInstance().checkAllowed(auto, userDTO, bewerbenButton);
-        bewerbenButton.addClickListener(new Button.ClickListener() {
+        //reservierenButton
+        Button reservierenButton = new Button("Reservieren");
+        ReservierungControl.getInstance().checkAllowed(auto, userDTO, reservierenButton);
+        reservierenButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 try {
                     ReservierungDAO.getInstance().createReservierung(auto, userDTO);
 
-                } catch (Exception e){ //HIER EXCEPTION HANDLIN VERBESSERN !!!!!!!!!!!
+                } catch (Exception e){
 
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
 
@@ -74,7 +75,9 @@ public class AutoWindow extends Window {
         //Horizontal
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.addComponent(okButton);
-        horizontalLayout.addComponent(bewerbenButton);
+        if ( userDTO.hasRole(Roles.KUNDE) ) {
+            horizontalLayout.addComponent(reservierenButton);
+        }
 
         //Vertikal
         VerticalLayout verticalLayout = new VerticalLayout();

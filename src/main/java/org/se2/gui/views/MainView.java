@@ -131,11 +131,7 @@ public class MainView extends VerticalLayout implements View {
 
         //Horizontal Layout
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-        horizontalLayout.addComponent(comboBox);
-        horizontalLayout.addComponent(search);
-        horizontalLayout.addComponent(searchButton);
-        horizontalLayout.setComponentAlignment(search, Alignment.MIDDLE_CENTER);
-        horizontalLayout.setComponentAlignment(searchButton, Alignment.MIDDLE_CENTER);
+
         //Vertriebler Menü
         if ( userDTO.hasRole(Roles.VERTRIEBLER) ) {
 
@@ -156,6 +152,12 @@ public class MainView extends VerticalLayout implements View {
 
             horizontalLayout.addComponent(inserierenButton);
 
+        } else {
+            horizontalLayout.addComponent(comboBox);
+            horizontalLayout.addComponent(search);
+            horizontalLayout.addComponent(searchButton);
+            horizontalLayout.setComponentAlignment(search, Alignment.MIDDLE_CENTER);
+            horizontalLayout.setComponentAlignment(searchButton, Alignment.MIDDLE_CENTER);
         }
 
         //Darstellen
